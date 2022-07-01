@@ -11,9 +11,6 @@ data class Aluno(
         var nome: String? = null,
         var idade: String? = null,
         var endereco: String? = null,
-        var telefone: String? = null,
-        @ManyToOne
-        @JoinColumn(referencedColumnName = "idCurso", name = "id_curso")
-        var curso: Curso? = null
+        var telefone: String? = null
 )
 
