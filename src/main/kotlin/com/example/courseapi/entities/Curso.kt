@@ -12,7 +12,10 @@ data class Curso(
         @ManyToOne
         @JoinColumn(referencedColumnName = "idMateria", name = "id_materia")
         var materia: Materia? = null,
-        @ManyToOne
-        @JoinColumn(referencedColumnName = "idNivel", name = "id_nivel")
-        var nivel: Nivel? = null
+        @OneToMany
+        @JoinTable(name = "curso_nivel",
+                joinColumns = [JoinColumn(name = "id_curso")],
+                inverseJoinColumns = [JoinColumn(name = "id_nivel")]
+        )
+        var niveis: List<Nivel>? = null
 )
