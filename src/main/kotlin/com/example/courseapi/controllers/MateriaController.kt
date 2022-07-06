@@ -1,13 +1,29 @@
 package com.example.courseapi.controllers
 
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import com.example.courseapi.entities.Materia
+import com.example.courseapi.service.materia.MateriaService
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.*
+
 
 @RestController
 @RequestMapping("materia")
 class MateriaController(
-//        val service: PeopleService
+        val service: MateriaService
 ) {
+    @GetMapping
+    fun getAll(): List<Materia> = service.getAll()
+
+    @PostMapping("/save")
+    fun save(@RequestBody materia: Materia): ResponseEntity<Materia> {
+        val validName = materia.nome?.let { service.validMateria(it) }
+        return if (validName == true) {
+            ResponseEntity(service.saveMateria(materia), HttpStatus.OK)
+        } else {
+            ResponseEntity(Materia(null, null), HttpStatus.BAD_REQUEST)
+        }
+    }
 }
 
 

@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("curso")
 class CursoController(
-        private val cursoService: CursoService
+        val service: CursoService
 ) {
     @GetMapping
-    fun getAll(): List<Curso> = cursoService.getAll()
+    fun getAll(): List<Curso> = service.getAll()
 }
 
 

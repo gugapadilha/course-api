@@ -7,4 +7,6 @@ interface MateriaService {
     fun getAll(): List<Materia>
 
     fun saveMateria(materia: Materia): Materia
+
+    fun validMateria(nomeMateria: String): Boolean
 }
