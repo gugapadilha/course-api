@@ -21,5 +21,4 @@ class CursoServiceImpl(
         return repository.delete(curso)
     }
 
-
 }

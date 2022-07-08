@@ -20,6 +20,7 @@ class CursoController(
     //exemple delete
     @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Curso) = service.deleteCurso(id)
+
 }
 
 
