@@ -15,14 +15,20 @@ class MateriaController(
     @GetMapping
     fun getAll(): List<Materia> = service.getAll()
 
-    @PostMapping("/save")
-    fun save(@RequestBody materia: Materia): ResponseEntity<Materia> {
-        val validName = materia.nome?.let { service.validMateria(it) }
-        return if (validName == true) {
-            ResponseEntity(service.saveMateria(materia), HttpStatus.OK)
-        } else {
-            ResponseEntity(Materia(null, null), HttpStatus.BAD_REQUEST)
-        }
+//    @PostMapping("/save")
+//    fun save(@RequestBody materia: Materia): ResponseEntity<Materia> {
+//        val validName = materia.nome?.let { service.validMateria(it) }
+//        return if (validName == true) {
+//            ResponseEntity(service.saveMateria(materia), HttpStatus.OK)
+//        } else {
+//            ResponseEntity(Materia(null, null), HttpStatus.BAD_REQUEST)
+//        }
+//    }
+
+    @PostMapping ("/save")
+    fun create(@RequestBody materia: Materia): ResponseEntity<Materia> {
+        val created = service.saveMateria(materia)
+        return ResponseEntity(created, HttpStatus.CREATED)
     }
 
     //data transfer object - DTO's

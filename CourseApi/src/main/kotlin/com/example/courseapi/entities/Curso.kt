@@ -9,6 +9,7 @@ data class Curso(
         @GeneratedValue(strategy = GenerationType.AUTO)
         var idCurso: Long? = null,
         var nome: String? = null,
+        var horario: String? = null,
         @ManyToOne
         @JoinColumn(referencedColumnName = "idMateria", name = "id_materia")
         var materia: Materia? = null,
