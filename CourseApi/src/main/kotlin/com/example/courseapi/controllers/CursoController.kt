@@ -5,7 +5,7 @@ import com.example.courseapi.service.curso.CursoService
 import org.springframework.web.bind.annotation.*
 
 
-@RestController
+@RestController //especify thats is actually a controller
 @RequestMapping("curso")
 class CursoController(
         val service: CursoService
@@ -13,14 +13,17 @@ class CursoController(
     @GetMapping
     fun getAll(): List<Curso> = service.getAll()
 
-    //exemple post
+    //example post
     @PostMapping("/save")
     fun create(@RequestBody curso: Curso): Curso = service.saveCurso(curso)
 
-    //exemple delete
+    //example delete
     @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Curso) = service.deleteCurso(id)
 
+    //example update
+    @PutMapping("/curso/{id}") fun update(@PathVariable id: Long, @RequestBody curso: Curso):
+            Curso = service.updateCurso(Curso())
 }
 
 

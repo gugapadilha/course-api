@@ -1,5 +1,6 @@
 package com.example.courseapi.controllers
 
+import com.example.courseapi.entities.Curso
 import com.example.courseapi.entities.Materia
 import com.example.courseapi.service.materia.MateriaService
 import org.springframework.http.HttpStatus
@@ -15,28 +16,18 @@ class MateriaController(
     @GetMapping
     fun getAll(): List<Materia> = service.getAll()
 
-//    @PostMapping("/save")
-//    fun save(@RequestBody materia: Materia): ResponseEntity<Materia> {
-//        val validName = materia.nome?.let { service.validMateria(it) }
-//        return if (validName == true) {
-//            ResponseEntity(service.saveMateria(materia), HttpStatus.OK)
-//        } else {
-//            ResponseEntity(Materia(null, null), HttpStatus.BAD_REQUEST)
-//        }
-//    }
-
     @PostMapping ("/save")
     fun create(@RequestBody materia: Materia): ResponseEntity<Materia> {
         val created = service.saveMateria(materia)
         return ResponseEntity(created, HttpStatus.CREATED)
     }
 
-    //data transfer object - DTO's
-    //modelar dados, tanto na entrega, quando no recebimento
-    //posso fazer uma serie de anotacoes para validar automaticamente minha entidade
+    @DeleteMapping("/{id}")
+        fun delete(@PathVariable id: Materia) = service.deleteMateria(id)
 
-    //caso de um usuario - preciso receber um dto pra salvar ele
-    //mas nao preciso necessariamente listar isso na listagem
+    @PutMapping("/{id}")
+    fun update(@PathVariable id: Long, @RequestBody materia: Materia): Materia = service.update(id, materia)
+
 }
 
 

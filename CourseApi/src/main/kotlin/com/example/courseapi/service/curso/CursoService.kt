@@ -9,4 +9,5 @@ interface CursoService {
     fun getAll(): List<Curso>
     fun saveCurso(curso: Curso): Curso
     fun deleteCurso(curso: Curso)
+    fun updateCurso(curso: Curso) : Curso
 }

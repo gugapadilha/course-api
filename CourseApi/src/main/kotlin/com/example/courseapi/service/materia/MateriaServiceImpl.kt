@@ -1,5 +1,6 @@
 package com.example.courseapi.service.materia
 
+import com.example.courseapi.entities.Curso
 import com.example.courseapi.entities.Materia
 import com.example.courseapi.repositories.MateriaRepository
 import org.springframework.stereotype.Service
@@ -24,5 +25,15 @@ class MateriaServiceImpl(
         } else {
             return true
         }
+    }
+
+    override fun deleteMateria(materia: Materia) {
+        return repository.delete(materia)
+    }
+
+    override fun update(id: Long, materia: Materia): Materia {
+        var materiaSelecionada = repository.findById(id).get()
+        materiaSelecionada.nome = materia.nome
+        return repository.save(materiaSelecionada)
     }
 }

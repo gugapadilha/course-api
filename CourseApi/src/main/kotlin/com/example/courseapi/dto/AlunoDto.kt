@@ -4,7 +4,6 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 
-
 data class AlunoDto(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

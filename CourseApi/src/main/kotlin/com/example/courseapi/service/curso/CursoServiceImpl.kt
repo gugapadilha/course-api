@@ -21,4 +21,8 @@ class CursoServiceImpl(
         return repository.delete(curso)
     }
 
+    override fun updateCurso(curso: Curso): Curso {
+        return repository.save(curso)
+    }
+
 }
